@@ -381,8 +381,6 @@ document.addEventListener("keydown", (event) => {
         removeDisplayBox()
     } else if (event.key === "Enter") {
         addDisplayBox()
-    } else {
-        console.log(event.key)
     }
 })
 

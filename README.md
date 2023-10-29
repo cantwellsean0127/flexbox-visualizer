@@ -10,7 +10,7 @@ Welcome to the Flexbox Visualizer! An interactive tool designed to help develope
 - Edit Box Details: Click on an individual box to edit it's properties and see the changes reflected instantly.
 
 ## How to Use
-1. Visit the ![Flexbox Visualizer](https://cantwellsean0127.github.io/flexbox-visualizer)
+1. Visit the [Flexbox Visualizer](https://cantwellsean0127.github.io/flexbox-visualizer)
 2. Start by adding boxes using the Enter key.
 3. Customize each box by clicking on it.
 4. Experiment and visualize how different properties and values affect the layout.

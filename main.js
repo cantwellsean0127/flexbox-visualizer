@@ -137,12 +137,12 @@ const setFlexJustifyContentSpaceEvenly = (event) => {
 
 const setBoxTextSizeSameSize = () => {
     for (const box of boxes) {
-        box.classList.add("text-5xl")
+        box.classList.add("text-lg")
     }
 }
 
 const setBoxTextSizeDifferentSizes = () => {
-    const textSizes = ["text-xl", "text-2xl", "text-3xl", "text-4xl", "text-5xl", "text-6xl", "text-7xl", "text-8xl", "text-9xl"]
+    const textSizes = ["text-sm", "text-md", "text-lg", "text-xl"]
     for (const box of boxes) {
         const randomTextSize = textSizes[Math.floor(Math.random(textSizes.length))]
         box.classList.add(randomTextSize)

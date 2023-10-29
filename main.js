@@ -125,7 +125,7 @@ const createBoxInformationModal = (box) => {
     }
     textSizeSelector.addEventListener("change", (event) => {
         for (const textSize of textSizes) {
-            boxHeader.classList.remove(textSize)
+            boxHeader.classList.remove(`text-${textSize}`)
         }
         boxHeader.classList.add(`text-${event.target.value}`)
     })

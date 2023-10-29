@@ -365,7 +365,7 @@ const addDisplayBox = () => {
     box.className = `flex justify-center items-center border-8 border-${randomColor}-500 h-1/5 w-1/5 bg-${randomColor}-200`
     const boxText = document.createElement("h1")
     boxText.textContent = `Box ${boxes.length + 1}`
-    boxText.className = `text-${randomColor}-500 text-5xl font-bold`
+    boxText.className = `text-${randomColor}-500 text-3xl font-bold`
     box.appendChild(boxText)
     display.appendChild(box)
 }

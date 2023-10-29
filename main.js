@@ -410,7 +410,7 @@ const createBoxInformationModal = (box) => {
         growValueDetailNumber.placeholder = currentBoxGrowValue
         growValueDetailNumber.min = "0"
         growValueDetailNumber.addEventListener("change", (event) => {
-            box.style.[`flex-${property}`] = "" + event.target.value
+            box.style[`flex-${property}`] = "" + event.target.value
         })
         growShrinkValueDetail.appendChild(growValueDetailNumber)
         modalContent.appendChild(growShrinkValueDetail)

@@ -1,323 +1,51 @@
-const display = document.getElementById("display")
-const boxes = display.getElementsByTagName("div")
-const enableFlexButton = document.getElementById("enableFlex")
-const disableFlexButton = document.getElementById("disableFlex")
-const flexDirectionRowButton = document.getElementById("flexDirectionRow")
-const flexDirectionColumnButton = document.getElementById("flexDirectionColumn")
-const flexJustifyContentFlexStartButton = document.getElementById("flexJustifyContentFlexStart")
-const flexJustifyContentFlexEndButton = document.getElementById("flexJustifyContentFlexEnd")
-const flexJustifyContentCenterButton = document.getElementById("flexJustifyContentCenter")
-const flexJustifyContentSpaceBetweenButton = document.getElementById("flexJustifyContentSpaceBetween")
-const flexJustifyContentSpaceAroundButton = document.getElementById("flexJustifyContentSpaceAround")
-const flexJustifyContentSpaceEvenlyButton = document.getElementById("flexJustifyContentSpaceEvenly")
-const flexAlignItemsFlexStart = document.getElementById("flexAlignItemsFlexStart")
-const flexAlignItemsFlexEnd = document.getElementById("flexAlignItemsFlexEnd")
-const flexAlignItemsCenter = document.getElementById("flexAlignItemsCenter")
-const flexAlignItemsStretch = document.getElementById("flexAlignItemsStretch")
-const flexAlignItemsBaseline = document.getElementById("flexAlignItemsBaseline")
-const flexWrapNoWrapButton = document.getElementById("flexWrapNoWrap")
-const flexWrapWrapButton = document.getElementById("flexWrapWrap")
-const flexWrapWrapReverseButton = document.getElementById("flexWrapWrapReverse")
+const controls = document.getElementById("controls")
+const visual = document.getElementById("visual")
+const boxes = visual.getElementsByTagName("div")
 
-const enableFlex = () => {
-    enableFlexButton.classList.add("bg-gray-200")
-    disableFlexButton.classList.remove("bg-gray-200")
-    display.classList.add("flex")
-    addButtonFunctionality()
-}
-
-const disableFlex = () => {
-    enableFlexButton.classList.remove("bg-gray-200")
-    disableFlexButton.classList.add("bg-gray-200")
-    display.classList.remove("flex")
-    removeButtonFunctionality()
-}
-
-const setFlexDirectionRow = (event) => {
-    display.classList.remove("flex-col")
-    flexDirectionRowButton.classList.add("bg-gray-200")
-    flexDirectionColumnButton.classList.remove("bg-gray-200")
-}
-
-const setFlexDirectionColumn = (event) => {
-    display.classList.add("flex-col")
-    flexDirectionRowButton.classList.remove("bg-gray-200")
-    flexDirectionColumnButton.classList.add("bg-gray-200")
-}
-
-const setFlexJustifyContentFlexStart = (event) => {
-    display.classList.add("justify-start")
-    flexJustifyContentFlexStartButton.classList.add("bg-gray-200")
-    display.classList.remove("justify-end")
-    flexJustifyContentFlexEndButton.classList.remove("bg-gray-200")
-    display.classList.remove("justify-center")
-    flexJustifyContentCenterButton.classList.remove("bg-gray-200")
-    display.classList.remove("justify-between")
-    flexJustifyContentSpaceBetweenButton.classList.remove("bg-gray-200")
-    display.classList.remove("justify-around")
-    flexJustifyContentSpaceAroundButton.classList.remove("bg-gray-200")
-    display.classList.remove("justify-evenly")
-    flexJustifyContentSpaceEvenlyButton.classList.remove("bg-gray-200")
-}
-
-const setFlexJustifyContentFlexEnd = (event) => {
-    display.classList.remove("justify-start")
-    flexJustifyContentFlexStartButton.classList.remove("bg-gray-200")
-    display.classList.add("justify-end")
-    flexJustifyContentFlexEndButton.classList.add("bg-gray-200")
-    display.classList.remove("justify-center")
-    flexJustifyContentCenterButton.classList.remove("bg-gray-200")
-    display.classList.remove("justify-between")
-    flexJustifyContentSpaceBetweenButton.classList.remove("bg-gray-200")
-    display.classList.remove("justify-around")
-    flexJustifyContentSpaceAroundButton.classList.remove("bg-gray-200")
-    display.classList.remove("justify-evenly")
-    flexJustifyContentSpaceEvenlyButton.classList.remove("bg-gray-200")
-}
-
-const setFlexJustifyContentCenter = (event) => {
-    display.classList.remove("justify-start")
-    flexJustifyContentFlexStartButton.classList.remove("bg-gray-200")
-    display.classList.remove("justify-end")
-    flexJustifyContentFlexEndButton.classList.remove("bg-gray-200")
-    display.classList.add("justify-center")
-    flexJustifyContentCenterButton.classList.add("bg-gray-200")
-    display.classList.remove("justify-between")
-    flexJustifyContentSpaceBetweenButton.classList.remove("bg-gray-200")
-    display.classList.remove("justify-around")
-    flexJustifyContentSpaceAroundButton.classList.remove("bg-gray-200")
-    display.classList.remove("justify-evenly")
-    flexJustifyContentSpaceEvenlyButton.classList.remove("bg-gray-200")
-}
-
-const setFlexJustifyContentSpaceBetween = (event) => {
-    display.classList.remove("justify-start")
-    flexJustifyContentFlexStartButton.classList.remove("bg-gray-200")
-    display.classList.remove("justify-end")
-    flexJustifyContentFlexEndButton.classList.remove("bg-gray-200")
-    display.classList.remove("justify-center")
-    flexJustifyContentCenterButton.classList.remove("bg-gray-200")
-    display.classList.add("justify-between")
-    flexJustifyContentSpaceBetweenButton.classList.add("bg-gray-200")
-    display.classList.remove("justify-around")
-    flexJustifyContentSpaceAroundButton.classList.remove("bg-gray-200")
-    display.classList.remove("justify-evenly")
-    flexJustifyContentSpaceEvenlyButton.classList.remove("bg-gray-200")
-}
-
-const setFlexJustifyContentSpaceAround = (event) => {
-    display.classList.remove("justify-start")
-    flexJustifyContentFlexStartButton.classList.remove("bg-gray-200")
-    display.classList.remove("justify-end")
-    flexJustifyContentFlexEndButton.classList.remove("bg-gray-200")
-    display.classList.remove("justify-center")
-    flexJustifyContentCenterButton.classList.remove("bg-gray-200")
-    display.classList.remove("justify-between")
-    flexJustifyContentSpaceBetweenButton.classList.remove("bg-gray-200")
-    display.classList.add("justify-around")
-    flexJustifyContentSpaceAroundButton.classList.add("bg-gray-200")
-    display.classList.remove("justify-evenly")
-    flexJustifyContentSpaceEvenlyButton.classList.remove("bg-gray-200")
-}
-
-const setFlexJustifyContentSpaceEvenly = (event) => {
-    display.classList.remove("justify-start")
-    flexJustifyContentFlexStartButton.classList.remove("bg-gray-200")
-    display.classList.remove("justify-end")
-    flexJustifyContentFlexEndButton.classList.remove("bg-gray-200")
-    display.classList.remove("justify-center")
-    flexJustifyContentCenterButton.classList.remove("bg-gray-200")
-    display.classList.remove("justify-between")
-    flexJustifyContentSpaceBetweenButton.classList.remove("bg-gray-200")
-    display.classList.remove("justify-around")
-    flexJustifyContentSpaceAroundButton.classList.remove("bg-gray-200")
-    display.classList.add("justify-evenly")
-    flexJustifyContentSpaceEvenlyButton.classList.add("bg-gray-200")
-}
-
-const setBoxTextSizeSameSize = () => {
-    for (const box of boxes) {
-        const boxHeader = box.getElementsByTagName("h1")[0]
-        boxHeader.classList.add("text-lg")
-        boxHeader.classList.remove("text-sm")
-        boxHeader.classList.remove("text-md")
-        boxHeader.classList.remove("text-xl")
+const createRules = () => {
+    const rules = {
+        "display": { values: ["block", "inline", "flex"], default_value: "block" },
+        "flex-direction": { values: ["row", "column", "row-reverse", "column-reverse"], default_value: "row" },
+        "justify-content": { values: ["flex-start", "flex-end", "center", "space-between", "space-around", "space-evenly"], default_value: "flex-start" },
+        "align-items": { values: ["flex-start", "flex-end", "center", "stretch", "baseline"], default_value: "flex-start" },
+        "flex-wrap": { values: ["nowrap", "wrap", "wrap-reverse"], default_value: "nowrap" }
     }
-}
-
-const setBoxTextSizeDifferentSizes = () => {
-    const textSizes = ["text-sm", "text-md", "text-lg", "text-xl"]
-    for (const box of boxes) {
-        const boxHeader = box.getElementsByTagName("h1")[0]
-        boxHeader.classList.remove("text-lg")
-        const randomTextSize = textSizes[Math.floor(Math.random() * textSizes.length)]
-        boxHeader.classList.add(randomTextSize)
+    const selectorOpening = document.createElement("p")
+    selectorOpening.setAttribute("class", "text-orange-600")
+    selectorOpening.textContent = "#visual {"
+    controls.appendChild(selectorOpening)
+    for (const rule in rules) {
+        const container = document.createElement("div")
+        container.setAttribute("id", rule)
+        const label = document.createElement("label")
+        label.setAttribute("for", rule + "Selector")
+        label.setAttribute("class", "text-white ml-8")
+        label.textContent = rule + ":"
+        container.appendChild(label)
+        const select = document.createElement("select")
+        select.setAttribute("name", rule)
+        select.setAttribute("id", rule + "Selector")
+        select.setAttribute("class", "bg-slate-900 text-cyan-600 m-2 w-fit")
+        for (const value of rules[rule].values) {
+            const option = document.createElement("option")
+            option.setAttribute("value", value)
+            option.textContent = value
+            if (value === rule.default_value) {
+                option.setAttribute("selected", "")
+            }
+            select.appendChild(option)
+        }
+        select.addEventListener("change", (event) => {
+            visual.style.setProperty(rule, event.target.value)
+        })
+        container.appendChild(select)
+        controls.appendChild(container)
     }
-}
+    const selectorClosing = document.createElement("p")
+    selectorClosing.textContent = "}"
+    selectorClosing.setAttribute("class", "text-orange-600")
+    controls.appendChild(selectorClosing)
 
-const setFlexAlignItemsFlexStart = (event) => {
-    display.classList.add("items-start")
-    flexAlignItemsFlexStart.classList.add("bg-gray-200")
-    display.classList.remove("items-end")
-    flexAlignItemsFlexEnd.classList.remove("bg-gray-200")
-    display.classList.remove("items-center")
-    flexAlignItemsCenter.classList.remove("bg-gray-200")
-    display.classList.remove("items-stretch")
-    flexAlignItemsStretch.classList.remove("bg-gray-200")
-    display.classList.remove("items-baseline")
-    flexAlignItemsBaseline.classList.remove("bg-gray-200")
-    setBoxTextSizeSameSize()
-}
-
-const setFlexAlignItemsFlexEnd = (event) => {
-    display.classList.remove("items-start")
-    flexAlignItemsFlexStart.classList.remove("bg-gray-200")
-    display.classList.add("items-end")
-    flexAlignItemsFlexEnd.classList.add("bg-gray-200")
-    display.classList.remove("items-center")
-    flexAlignItemsCenter.classList.remove("bg-gray-200")
-    display.classList.remove("items-stretch")
-    flexAlignItemsStretch.classList.remove("bg-gray-200")
-    display.classList.remove("items-baseline")
-    flexAlignItemsBaseline.classList.remove("bg-gray-200")
-    setBoxTextSizeSameSize()
-}
-
-const setFlexAlignItemsCenter = (event) => {
-    display.classList.remove("items-start")
-    flexAlignItemsFlexStart.classList.remove("bg-gray-200")
-    display.classList.remove("items-end")
-    flexAlignItemsFlexEnd.classList.remove("bg-gray-200")
-    display.classList.add("items-center")
-    flexAlignItemsCenter.classList.add("bg-gray-200")
-    display.classList.remove("items-stretch")
-    flexAlignItemsStretch.classList.remove("bg-gray-200")
-    display.classList.remove("items-baseline")
-    flexAlignItemsBaseline.classList.remove("bg-gray-200")
-    setBoxTextSizeSameSize()
-}
-
-const setFlexAlignItemsStretch = (event) => {
-    display.classList.remove("items-start")
-    flexAlignItemsFlexStart.classList.remove("bg-gray-200")
-    display.classList.remove("items-end")
-    flexAlignItemsFlexEnd.classList.remove("bg-gray-200")
-    display.classList.remove("items-center")
-    flexAlignItemsCenter.classList.remove("bg-gray-200")
-    display.classList.add("items-stretch")
-    flexAlignItemsStretch.classList.add("bg-gray-200")
-    display.classList.remove("items-baseline")
-    flexAlignItemsBaseline.classList.remove("bg-gray-200")
-    setBoxTextSizeSameSize()
-}
-
-const setFlexAlignItemsBaseline = (event) => {
-    display.classList.remove("items-start")
-    flexAlignItemsFlexStart.classList.remove("bg-gray-200")
-    display.classList.remove("items-end")
-    flexAlignItemsFlexEnd.classList.remove("bg-gray-200")
-    display.classList.remove("items-center")
-    flexAlignItemsCenter.classList.remove("bg-gray-200")
-    display.classList.remove("items-stretch")
-    flexAlignItemsStretch.classList.remove("bg-gray-200")
-    display.classList.add("items-baseline")
-    flexAlignItemsBaseline.classList.add("bg-gray-200")
-    setBoxTextSizeDifferentSizes()
-}
-
-const setFlexWrapNoWrap = (event) => {
-    flexWrapNoWrapButton.classList.add("bg-gray-200")
-    display.classList.remove("flex-wrap")
-    flexWrapWrapButton.classList.remove("bg-gray-200")
-    display.classList.remove("flex-wrap-reverse")
-    flexWrapWrapReverseButton.classList.remove("bg-gray-200")
-
-}
-
-const setFlexWrapWrap = (event) => {
-    flexWrapNoWrapButton.classList.remove("bg-gray-200")
-    display.classList.add("flex-wrap")
-    flexWrapWrapButton.classList.add("bg-gray-200")
-    display.classList.remove("flex-wrap-reverse")
-    flexWrapWrapReverseButton.classList.remove("bg-gray-200")
-}
-
-const setFlexWrapWrapReverse = (event) => {
-    flexWrapNoWrapButton.classList.remove("bg-gray-200")
-    display.classList.remove("flex-wrap")
-    flexWrapWrapButton.classList.remove("bg-gray-200")
-    display.classList.add("flex-wrap-reverse")
-    flexWrapWrapReverseButton.classList.add("bg-gray-200")
-}
-
-const addButtonFunctionality = () => {
-    flexDirectionRowButton.addEventListener("click", setFlexDirectionRow)
-    flexDirectionRowButton.classList.remove("opacity-20")
-    flexDirectionColumnButton.addEventListener("click", setFlexDirectionColumn)
-    flexDirectionColumnButton.classList.remove("opacity-20")
-    flexJustifyContentFlexStartButton.addEventListener("click", setFlexJustifyContentFlexStart)
-    flexJustifyContentFlexStartButton.classList.remove("opacity-20")
-    flexJustifyContentFlexEndButton.addEventListener("click", setFlexJustifyContentFlexEnd)
-    flexJustifyContentFlexEndButton.classList.remove("opacity-20")
-    flexJustifyContentCenterButton.addEventListener("click", setFlexJustifyContentCenter)
-    flexJustifyContentCenterButton.classList.remove("opacity-20")
-    flexJustifyContentSpaceBetweenButton.addEventListener("click", setFlexJustifyContentSpaceBetween)
-    flexJustifyContentSpaceBetweenButton.classList.remove("opacity-20")
-    flexJustifyContentSpaceAroundButton.addEventListener("click", setFlexJustifyContentSpaceAround)
-    flexJustifyContentSpaceAroundButton.classList.remove("opacity-20")
-    flexJustifyContentSpaceEvenlyButton.addEventListener("click", setFlexJustifyContentSpaceEvenly)
-    flexJustifyContentSpaceEvenlyButton.classList.remove("opacity-20")
-    flexAlignItemsFlexStart.addEventListener("click", setFlexAlignItemsFlexStart)
-    flexAlignItemsFlexStart.classList.remove("opacity-20")
-    flexAlignItemsFlexEnd.addEventListener("click", setFlexAlignItemsFlexEnd)
-    flexAlignItemsFlexEnd.classList.remove("opacity-20")
-    flexAlignItemsCenter.addEventListener("click", setFlexAlignItemsCenter)
-    flexAlignItemsCenter.classList.remove("opacity-20")
-    flexAlignItemsStretch.addEventListener("click", setFlexAlignItemsStretch)
-    flexAlignItemsStretch.classList.remove("opacity-20")
-    flexAlignItemsBaseline.addEventListener("click", setFlexAlignItemsBaseline)
-    flexAlignItemsBaseline.classList.remove("opacity-20")
-    flexWrapNoWrapButton.addEventListener("click", setFlexWrapNoWrap)
-    flexWrapNoWrapButton.classList.remove("opacity-20")
-    flexWrapWrapButton.addEventListener("click", setFlexWrapWrap)
-    flexWrapWrapButton.classList.remove("opacity-20")
-    flexWrapWrapReverseButton.addEventListener("click", setFlexWrapWrapReverse)
-    flexWrapWrapReverseButton.classList.remove("opacity-20")
-}
-
-const removeButtonFunctionality = () => {
-    flexDirectionRowButton.removeEventListener("click", setFlexDirectionRow)
-    flexDirectionRowButton.classList.add("opacity-20")
-    flexDirectionColumnButton.removeEventListener("click", setFlexDirectionColumn)
-    flexDirectionColumnButton.classList.add("opacity-20")
-    flexJustifyContentFlexStartButton.removeEventListener("click", setFlexJustifyContentFlexStart)
-    flexJustifyContentFlexStartButton.classList.add("opacity-20")
-    flexJustifyContentFlexEndButton.removeEventListener("click", setFlexJustifyContentFlexEnd)
-    flexJustifyContentFlexEndButton.classList.add("opacity-20")
-    flexJustifyContentCenterButton.removeEventListener("click", setFlexJustifyContentCenter)
-    flexJustifyContentCenterButton.classList.add("opacity-20")
-    flexJustifyContentSpaceBetweenButton.removeEventListener("click", setFlexJustifyContentSpaceBetween)
-    flexJustifyContentSpaceBetweenButton.classList.add("opacity-20")
-    flexJustifyContentSpaceAroundButton.removeEventListener("click", setFlexJustifyContentSpaceAround)
-    flexJustifyContentSpaceAroundButton.classList.add("opacity-20")
-    flexJustifyContentSpaceEvenlyButton.removeEventListener("click", setFlexJustifyContentSpaceEvenly)
-    flexJustifyContentSpaceEvenlyButton.classList.add("opacity-20")
-    flexAlignItemsFlexStart.removeEventListener("click", setFlexAlignItemsFlexStart)
-    flexAlignItemsFlexStart.classList.add("opacity-20")
-    flexAlignItemsFlexEnd.removeEventListener("click", setFlexAlignItemsFlexEnd)
-    flexAlignItemsFlexEnd.classList.add("opacity-20")
-    flexAlignItemsCenter.removeEventListener("click", setFlexAlignItemsCenter)
-    flexAlignItemsCenter.classList.add("opacity-20")
-    flexAlignItemsStretch.removeEventListener("click", setFlexAlignItemsStretch)
-    flexAlignItemsStretch.classList.add("opacity-20")
-    flexAlignItemsBaseline.removeEventListener("click", setFlexAlignItemsBaseline)
-    flexAlignItemsBaseline.classList.add("opacity-20")
-    flexWrapNoWrapButton.removeEventListener("click", setFlexWrapNoWrap)
-    flexWrapNoWrapButton.classList.add("opacity-20")
-    flexWrapWrapButton.removeEventListener("click", setFlexWrapWrap)
-    flexWrapWrapButton.classList.add("opacity-20")
-    flexWrapWrapReverseButton.removeEventListener("click", setFlexWrapWrapReverse)
-    flexWrapWrapReverseButton.classList.add("opacity-20")
 }
 
 const addDisplayBox = (numberOfDisplayBoxesToAdd) => {
@@ -329,19 +57,25 @@ const addDisplayBox = (numberOfDisplayBoxesToAdd) => {
         const colors = ["red", "orange", "amber", "yellow", "lime", "green", "emerald", "teal", "cyan", "sky", "blue", "indigo", "violet", "purple", "fuchsia", "pink", "rose"]
         const randomColor = colors[Math.floor(Math.random() * colors.length)]
         const box = document.createElement("div")
-        box.className = `flex justify-center items-center border-8 border-${randomColor}-500 h-1/5 w-1/5 bg-${randomColor}-200`
+        box.className = `flex justify-center items-center border-8 border-${randomColor}-500 h-fit w-fit bg-${randomColor}-200 p-5`
         const boxText = document.createElement("h1")
         boxText.textContent = `Box ${boxes.length + 1}`
-        boxText.className = `text-${randomColor}-500 text-lg font-bold`
+        boxText.className = `text-${randomColor}-500 text-lg font-bold select-none`
+        boxText.addEventListener("click", (event) => {
+            event.stopPropagation()
+            createBoxInformationModal(event.target.parentNode)
+        })
         box.appendChild(boxText)
-        box.addEventListener("dblclick", (event) => createBoxInformationModal(event.target))
-        display.appendChild(box)
+        box.addEventListener("click", (event) => {
+            createBoxInformationModal(event.target)
+        })
+        visual.appendChild(box)
     }
 }
 
 const removeDisplayBox = () => {
     if (boxes.length > 0) {
-        display.removeChild(boxes[boxes.length - 1])
+        visual.removeChild(boxes[boxes.length - 1])
     }
 }
 
@@ -354,6 +88,7 @@ document.addEventListener("keydown", (event) => {
 })
 
 const createBoxInformationModal = (box) => {
+    const boxHeader = box.getElementsByTagName("h1")[0]
     const boxStyles = window.getComputedStyle(box)
     const modalOverlay = document.createElement("div")
     modalOverlay.id = "boxInformationModalOverlay"
@@ -365,6 +100,37 @@ const createBoxInformationModal = (box) => {
     modalHeader.className = "text-xl font-bold mb-4"
     modalHeader.textContent = `${box.textContent} Details`
     modalContent.appendChild(modalHeader)
+    const textSizeDetails = document.createElement("div")
+    textSizeDetails.className = "mb-4"
+    const textSizeLabel = document.createElement("label")
+    textSizeLabel.setAttribute("for", "boxColorSelector")
+    textSizeLabel.className = "block text-sm font-medium text-gray-700 mb-2"
+    textSizeLabel.textContent = "Text Size:"
+    textSizeDetails.appendChild(textSizeLabel)
+    textSizeSelector = document.createElement("select")
+    textSizeSelector.id = "boxColorSelector"
+    textSizeSelector.title = "boxColorSelector"
+    textSizeSelector.className = "border rounded-md p-2 w-full text-gray-700"
+    const textSizes = ["sm", "md", "lg", "xl", "2xl", "3xl", "4xl", "5xl", "6xl", "7xl", "8xl", "9xl",]
+    let currentTextSize = [...boxHeader.classList].filter((classValue) => classValue.startsWith("text-") && classValue.length <= 8)[0]
+    currentTextSize = currentTextSize.slice(5)
+    for (const textSize of textSizes) {
+        const textSizeOption = document.createElement("option")
+        textSizeOption.value = textSize
+        textSizeOption.textContent = textSize.toUpperCase()
+        if (textSize === currentTextSize) {
+            textSizeOption.setAttribute("selected", "")
+        }
+        textSizeSelector.appendChild(textSizeOption)
+    }
+    textSizeSelector.addEventListener("change", (event) => {
+        for (const textSize of textSizes) {
+            boxHeader.classList.remove(textSize)
+        }
+        boxHeader.classList.add(`text-${event.target.value}`)
+    })
+    textSizeDetails.appendChild(textSizeSelector)
+    modalContent.appendChild(textSizeDetails)
     const boxColorDetails = document.createElement("div")
     boxColorDetails.className = "mb-4"
     const boxColorLabel = document.createElement("label")
@@ -393,13 +159,13 @@ const createBoxInformationModal = (box) => {
         box.classList.add(`border-${event.target.value}-500`)
         box.classList.remove(`bg-${currentBoxColor}-200`)
         box.classList.add(`bg-${event.target.value}-200`)
-        const boxHeader = box.getElementsByTagName("h1")[0]
         boxHeader.classList.remove(`text-${currentBoxColor}-500`)
         boxHeader.classList.add(`text-${event.target.value}-500`)
     })
     boxColorDetails.appendChild(boxColorSelector)
     modalContent.appendChild(boxColorDetails)
-    ["grow", "shrink"].forEach((property) => {
+    const growShrink = ["grow", "shrink"]
+    growShrink.forEach((property) => {
         const growShrinkValueDetail = document.createElement("div")
         growShrinkValueDetail.className = "mb-4"
         const growValueDetailLabel = document.createElement("label")
@@ -435,6 +201,5 @@ const removeBoxInformationModal = (event) => {
     }
 }
 
+createRules()
 addDisplayBox(3)
-enableFlexButton.addEventListener("click", enableFlex)
-disableFlexButton.addEventListener("click", disableFlex)

@@ -1,8 +1,6 @@
 # Flexbox Visualizer
 Welcome to the Flexbox Visualizer! An interactive tool designed to help developers understand and visualize how Flexbox works in real-time.
 
-Demo Image
-
 ## Demo Image:
 ![Demo](./demo.png)
 

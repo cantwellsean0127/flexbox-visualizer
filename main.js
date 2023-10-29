@@ -328,6 +328,7 @@ const addDisplayBox = (numberOfDisplayBoxesToAdd) => {
         boxText.textContent = `Box ${boxes.length + 1}`
         boxText.className = `text-${randomColor}-500 text-lg font-bold`
         box.appendChild(boxText)
+        box.addEventListener("dblclick", (event) => createBoxInformationModal(event.target))
         display.appendChild(box)
     }
 }
@@ -339,12 +340,112 @@ const removeDisplayBox = () => {
 }
 
 document.addEventListener("keydown", (event) => {
-    if (event.key === "Backspace") {
+    if (event.key === "Backspace" && event.target === document.body) {
         removeDisplayBox()
-    } else if (event.key === "Enter") {
+    } else if (event.key === "Enter" && event.target === document.body) {
         addDisplayBox()
     }
 })
+
+const createBoxInformationModal = (box) => {
+    const boxStyles = window.getComputedStyle(box)
+    const modalOverlay = document.createElement("div")
+    modalOverlay.id = "boxInformationModalOverlay"
+    modalOverlay.className = "fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 flex justify-center items-center"
+    const modalContent = document.createElement("div")
+    modalContent.className = "bg-white rounded-lg shadow-lg w-1/3 p-6"
+    modalOverlay.appendChild(modalContent)
+    const modalHeader = document.createElement("h1")
+    modalHeader.className = "text-xl font-bold mb-4"
+    modalHeader.textContent = `${box.textContent} Details`
+    modalContent.appendChild(modalHeader)
+    const boxColorDetails = document.createElement("div")
+    boxColorDetails.className = "mb-4"
+    const boxColorLabel = document.createElement("label")
+    boxColorLabel.setAttribute("for", "boxColorSelector")
+    boxColorLabel.className = "block text-sm font-medium text-gray-700 mb-2"
+    boxColorLabel.textContent = "Color:"
+    boxColorDetails.appendChild(boxColorLabel)
+    boxColorSelector = document.createElement("select")
+    boxColorSelector.id = "boxColorSelector"
+    boxColorSelector.title = "boxColorSelector"
+    boxColorSelector.className = "border rounded-md p-2 w-full text-gray-700"
+    const colors = ["red", "orange", "amber", "yellow", "lime", "green", "emerald", "teal", "cyan", "sky", "blue", "indigo", "violet", "purple", "fuchsia", "pink", "rose"]
+    let currentBoxColor = [...box.classList].filter((classValue) => classValue.startsWith("bg-"))[0]
+    currentBoxColor = currentBoxColor.slice(3, currentBoxColor.length - 4)
+    for (const color of colors) {
+        const boxColorOption = document.createElement("option")
+        boxColorOption.value = color
+        boxColorOption.textContent = `${color[0].toUpperCase()}${color.slice(1)}`
+        if (color === currentBoxColor) {
+            boxColorOption.setAttribute("selected", "")
+        }
+        boxColorSelector.appendChild(boxColorOption)
+    }
+    boxColorSelector.addEventListener("change", (event) => {
+        box.classList.remove(`border-${currentBoxColor}-500`)
+        box.classList.add(`border-${event.target.value}-500`)
+        box.classList.remove(`bg-${currentBoxColor}-200`)
+        box.classList.add(`bg-${event.target.value}-200`)
+        const boxHeader = box.getElementsByTagName("h1")[0]
+        boxHeader.classList.remove(`text-${currentBoxColor}-500`)
+        boxHeader.classList.add(`text-${event.target.value}-500`)
+    })
+    boxColorDetails.appendChild(boxColorSelector)
+    modalContent.appendChild(boxColorDetails)
+    const growValueDetail = document.createElement("div")
+    growValueDetail.className = "mb-4"
+    const growValueDetailLabel = document.createElement("label")
+    growValueDetailLabel.setAttribute("for", "growValueDetailNumber")
+    growValueDetailLabel.className = "block text-sm font-medium text-gray-700 mb-2"
+    growValueDetailLabel.textContent = "Grow Value:"
+    growValueDetail.appendChild(growValueDetailLabel)
+    const growValueDetailNumber = document.createElement("input")
+    growValueDetailNumber.type = "number"
+    growValueDetailNumber.id = "growValueDetailNumber"
+    growValueDetailNumber.name = "growValueDetailNumber"
+    growValueDetailNumber.className = "border rounded-md p-2 w-full text-gray-700"
+    const currentBoxGrowValue = boxStyles.getPropertyValue("flex-grow")
+    growValueDetailNumber.placeholder = currentBoxGrowValue
+    growValueDetailNumber.min = "0"
+    growValueDetailNumber.addEventListener("change", (event) => {
+        box.style.flexGrow = "" + event.target.value
+    })
+    growValueDetail.appendChild(growValueDetailNumber)
+    modalContent.appendChild(growValueDetail)
+    const shrinkValueDetail = document.createElement("div")
+    shrinkValueDetail.className = "mb-4"
+    const shrinkValueDetailLabel = document.createElement("label")
+    shrinkValueDetailLabel.setAttribute("for", "shrinkValueDetailNumber")
+    shrinkValueDetailLabel.className = "block text-sm font-medium text-gray-700 mb-2"
+    shrinkValueDetailLabel.textContent = "Shrink Value:"
+    shrinkValueDetail.appendChild(shrinkValueDetailLabel)
+    const shrinkValueDetailNumber = document.createElement("input")
+    shrinkValueDetailNumber.type = "number"
+    shrinkValueDetailNumber.id = "shrinkValueDetailNumber"
+    shrinkValueDetailNumber.name = "shrinkValueDetailNumber"
+    shrinkValueDetailNumber.className = "border rounded-md p-2 w-full text-gray-700"
+    const currentBoxShrinkValue = boxStyles.getPropertyValue("flex-shrink")
+    shrinkValueDetailNumber.placeholder = currentBoxShrinkValue
+    shrinkValueDetailNumber.min = "0"
+    shrinkValueDetailNumber.addEventListener("change", (event) => {
+        box.style.flexShrink = "" + event.target.value
+    })
+    shrinkValueDetail.appendChild(shrinkValueDetailNumber)
+    modalContent.appendChild(shrinkValueDetail)
+    document.body.appendChild(modalOverlay)
+    document.body.addEventListener("click", removeBoxInformationModal)
+}
+
+const removeBoxInformationModal = (event) => {
+    const boxInformationModalOverlay = document.getElementById("boxInformationModalOverlay")
+    if (event.target !== boxInformationModalOverlay) {
+        return
+    } else {
+        document.body.removeChild(boxInformationModalOverlay)
+        document.body.removeEventListener("click", removeBoxInformationModal)
+    }
+}
 
 addDisplayBox(3)
 enableFlexButton.addEventListener("click", enableFlex)

@@ -393,46 +393,28 @@ const createBoxInformationModal = (box) => {
     })
     boxColorDetails.appendChild(boxColorSelector)
     modalContent.appendChild(boxColorDetails)
-    const growValueDetail = document.createElement("div")
-    growValueDetail.className = "mb-4"
-    const growValueDetailLabel = document.createElement("label")
-    growValueDetailLabel.setAttribute("for", "growValueDetailNumber")
-    growValueDetailLabel.className = "block text-sm font-medium text-gray-700 mb-2"
-    growValueDetailLabel.textContent = "Grow Value:"
-    growValueDetail.appendChild(growValueDetailLabel)
-    const growValueDetailNumber = document.createElement("input")
-    growValueDetailNumber.type = "number"
-    growValueDetailNumber.id = "growValueDetailNumber"
-    growValueDetailNumber.name = "growValueDetailNumber"
-    growValueDetailNumber.className = "border rounded-md p-2 w-full text-gray-700"
-    const currentBoxGrowValue = boxStyles.getPropertyValue("flex-grow")
-    growValueDetailNumber.placeholder = currentBoxGrowValue
-    growValueDetailNumber.min = "0"
-    growValueDetailNumber.addEventListener("change", (event) => {
-        box.style.flexGrow = "" + event.target.value
+    ["grow", "shrink"].forEach((property) => {
+        const growShrinkValueDetail = document.createElement("div")
+        growShrinkValueDetail.className = "mb-4"
+        const growValueDetailLabel = document.createElement("label")
+        growValueDetailLabel.setAttribute("for", `${property}ValueDetailNumber`)
+        growValueDetailLabel.className = "block text-sm font-medium text-gray-700 mb-2"
+        growValueDetailLabel.textContent = "Grow Value:"
+        growShrinkValueDetail.appendChild(growValueDetailLabel)
+        const growValueDetailNumber = document.createElement("input")
+        growValueDetailNumber.type = "number"
+        growValueDetailNumber.id = `${property}ValueDetailNumber`
+        growValueDetailNumber.name = `${property}ValueDetailNumber`
+        growValueDetailNumber.className = "border rounded-md p-2 w-full text-gray-700"
+        const currentBoxGrowValue = boxStyles.getPropertyValue(`flex-${property}`)
+        growValueDetailNumber.placeholder = currentBoxGrowValue
+        growValueDetailNumber.min = "0"
+        growValueDetailNumber.addEventListener("change", (event) => {
+            box.style.[`flex-${property}`] = "" + event.target.value
+        })
+        growShrinkValueDetail.appendChild(growValueDetailNumber)
+        modalContent.appendChild(growShrinkValueDetail)
     })
-    growValueDetail.appendChild(growValueDetailNumber)
-    modalContent.appendChild(growValueDetail)
-    const shrinkValueDetail = document.createElement("div")
-    shrinkValueDetail.className = "mb-4"
-    const shrinkValueDetailLabel = document.createElement("label")
-    shrinkValueDetailLabel.setAttribute("for", "shrinkValueDetailNumber")
-    shrinkValueDetailLabel.className = "block text-sm font-medium text-gray-700 mb-2"
-    shrinkValueDetailLabel.textContent = "Shrink Value:"
-    shrinkValueDetail.appendChild(shrinkValueDetailLabel)
-    const shrinkValueDetailNumber = document.createElement("input")
-    shrinkValueDetailNumber.type = "number"
-    shrinkValueDetailNumber.id = "shrinkValueDetailNumber"
-    shrinkValueDetailNumber.name = "shrinkValueDetailNumber"
-    shrinkValueDetailNumber.className = "border rounded-md p-2 w-full text-gray-700"
-    const currentBoxShrinkValue = boxStyles.getPropertyValue("flex-shrink")
-    shrinkValueDetailNumber.placeholder = currentBoxShrinkValue
-    shrinkValueDetailNumber.min = "0"
-    shrinkValueDetailNumber.addEventListener("change", (event) => {
-        box.style.flexShrink = "" + event.target.value
-    })
-    shrinkValueDetail.appendChild(shrinkValueDetailNumber)
-    modalContent.appendChild(shrinkValueDetail)
     document.body.appendChild(modalOverlay)
     document.body.addEventListener("click", removeBoxInformationModal)
 }

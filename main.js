@@ -18,10 +18,6 @@ const flexAlignItemsBaseline = document.getElementById("flexAlignItemsBaseline")
 const flexWrapNoWrapButton = document.getElementById("flexWrapNoWrap")
 const flexWrapWrapButton = document.getElementById("flexWrapWrap")
 const flexWrapWrapReverseButton = document.getElementById("flexWrapWrapReverse")
-const flexGrow0Button = document.getElementById("flexGrow0")
-const flexGrow1Button = document.getElementById("flexGrow1")
-const flexShrink0Button = document.getElementById("flexShrink0")
-const flexShrink1Button = document.getElementById("flexShrink1")
 
 const enableFlex = () => {
     enableFlexButton.classList.add("bg-gray-200")
@@ -248,30 +244,6 @@ const setFlexWrapWrapReverse = (event) => {
     flexWrapWrapReverseButton.classList.add("bg-gray-200")
 }
 
-const setFlexGrow0 = (event) => {
-    display.classList.remove("grow")
-    flexGrow0Button.classList.add("bg-gray-200")
-    flexGrow1Button.classList.remove("bg-gray-200")
-}
-
-const setFlexGrow1 = (event) => {
-    display.classList.add("grow")
-    flexGrow0Button.classList.remove("bg-gray-200")
-    flexGrow1Button.classList.add("bg-gray-200")
-}
-
-const setFlexShrink0 = (event) => {
-    display.classList.remove("shrink")
-    flexShrink0Button.classList.add("bg-gray-200")
-    flexShrink1Button.classList.remove("bg-gray-200")
-}
-
-const setFlexShrink1 = (event) => {
-    display.classList.add("shrink")
-    flexShrink0Button.classList.remove("bg-gray-200")
-    flexShrink1Button.classList.add("bg-gray-200")
-}
-
 const addButtonFunctionality = () => {
     flexDirectionRowButton.addEventListener("click", setFlexDirectionRow)
     flexDirectionRowButton.classList.remove("opacity-20")
@@ -305,14 +277,6 @@ const addButtonFunctionality = () => {
     flexWrapWrapButton.classList.remove("opacity-20")
     flexWrapWrapReverseButton.addEventListener("click", setFlexWrapWrapReverse)
     flexWrapWrapReverseButton.classList.remove("opacity-20")
-    flexGrow0Button.addEventListener("click", setFlexGrow0)
-    flexGrow0Button.classList.remove("opacity-20")
-    flexGrow1Button.addEventListener("click", setFlexGrow1)
-    flexGrow1Button.classList.remove("opacity-20")
-    flexShrink0Button.addEventListener("click", setFlexShrink0)
-    flexShrink0Button.classList.remove("opacity-20")
-    flexShrink1Button.addEventListener("click", setFlexShrink1)
-    flexShrink1Button.classList.remove("opacity-20")
 }
 
 const removeButtonFunctionality = () => {
@@ -348,26 +312,24 @@ const removeButtonFunctionality = () => {
     flexWrapWrapButton.classList.add("opacity-20")
     flexWrapWrapReverseButton.removeEventListener("click", setFlexWrapWrapReverse)
     flexWrapWrapReverseButton.classList.add("opacity-20")
-    flexGrow0Button.removeEventListener("click", setFlexGrow0)
-    flexGrow0Button.classList.add("opacity-20")
-    flexGrow1Button.removeEventListener("click", setFlexGrow1)
-    flexGrow1Button.classList.add("opacity-20")
-    flexShrink0Button.removeEventListener("click", setFlexShrink0)
-    flexShrink0Button.classList.add("opacity-20")
-    flexShrink1Button.removeEventListener("click", setFlexShrink1)
-    flexShrink1Button.classList.add("opacity-20")
 }
 
-const addDisplayBox = () => {
-    const colors = ["red", "orange", "amber", "yellow", "lime", "green", "emerald", "teal", "cyan", "sky", "blue", "indigo", "violet", "purple", "fuchsia", "pink", "rose"]
-    const randomColor = colors[Math.floor(Math.random() * colors.length)]
-    const box = document.createElement("div")
-    box.className = `flex justify-center items-center border-8 border-${randomColor}-500 h-1/5 w-1/5 bg-${randomColor}-200`
-    const boxText = document.createElement("h1")
-    boxText.textContent = `Box ${boxes.length + 1}`
-    boxText.className = `text-${randomColor}-500 text-lg font-bold`
-    box.appendChild(boxText)
-    display.appendChild(box)
+const addDisplayBox = (numberOfDisplayBoxesToAdd) => {
+    if (numberOfDisplayBoxesToAdd === undefined) {
+        numberOfDisplayBoxesToAdd = 1
+    }
+
+    for (let boxCount = 0; boxCount < numberOfDisplayBoxesToAdd; boxCount++) {
+        const colors = ["red", "orange", "amber", "yellow", "lime", "green", "emerald", "teal", "cyan", "sky", "blue", "indigo", "violet", "purple", "fuchsia", "pink", "rose"]
+        const randomColor = colors[Math.floor(Math.random() * colors.length)]
+        const box = document.createElement("div")
+        box.className = `flex justify-center items-center border-8 border-${randomColor}-500 h-1/5 w-1/5 bg-${randomColor}-200`
+        const boxText = document.createElement("h1")
+        boxText.textContent = `Box ${boxes.length + 1}`
+        boxText.className = `text-${randomColor}-500 text-lg font-bold`
+        box.appendChild(boxText)
+        display.appendChild(box)
+    }
 }
 
 const removeDisplayBox = () => {
@@ -384,8 +346,6 @@ document.addEventListener("keydown", (event) => {
     }
 })
 
-addDisplayBox()
-addDisplayBox()
-addDisplayBox()
+addDisplayBox(3)
 enableFlexButton.addEventListener("click", enableFlex)
 disableFlexButton.addEventListener("click", disableFlex)

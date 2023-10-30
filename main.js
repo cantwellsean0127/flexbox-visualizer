@@ -101,7 +101,7 @@ const createBoxInformationModal = (box) => {
     textSizeLabel.textContent = "Text Size:"
 
     // Creates and styles the text size selector
-    textSizeSelector = document.createElement("select")
+    const textSizeSelector = document.createElement("select")
     textSizeDetails.appendChild(textSizeSelector)
     textSizeSelector.id = "boxColorSelector"
     textSizeSelector.title = "boxColorSelector"
@@ -130,10 +130,10 @@ const createBoxInformationModal = (box) => {
     textSizeSelector.addEventListener("change", (event) => {
 
         // Removes the previous text size class
-        for (const textSize of textSizes) boxHeader.classList.remove(`text-${textSize}`)
+        for (const textSize of textSizes) boxHeader.classList.remove(textSize)
 
         // Adds the newly selected text size class
-        boxHeader.classList.add(`text-${event.target.value}`)
+        boxHeader.classList.add(event.target.value)
     })
 
     // Creates and styles the box color details container.
@@ -144,12 +144,12 @@ const createBoxInformationModal = (box) => {
     // Creates and styles the box color label
     const boxColorLabel = document.createElement("label")
     boxColorDetails.appendChild(boxColorLabel)
-    boxColorLabel.for = boxColorSelector
+    boxColorLabel.for = "boxColorSelector"
     boxColorLabel.className = "block text-sm font-medium text-gray-700 mb-2"
     boxColorLabel.textContent = "Color:"
 
     // Creates and styles the box color selector
-    boxColorSelector = document.createElement("select")
+    const boxColorSelector = document.createElement("select")
     boxColorDetails.appendChild(boxColorSelector)
     boxColorSelector.id = "boxColorSelector"
     boxColorSelector.title = "boxColorSelector"

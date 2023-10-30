@@ -1,11 +1,10 @@
-<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="./main.js" defer></script>
+    <script src="./main.js" defer=""></script>
     <link rel="shortcut icon" href="./favicon.png" type="image/x-icon">
     <title>Flexbox Visualizer</title>
 </head>
@@ -13,9 +12,73 @@
 <body class="flex bg-gray-100">
 
     <!-- Controls the flex properties of the display -->
-    <div id="controls" class="w-1/3 h-screen bg-slate-900 text-white"></div>
+    <div id="controls" class="w-1/3 h-screen bg-slate-900 text-white">
 
-    <!-- Shows the boxes -->
+        <!-- The opening bracket for the "CSS selector" -->
+        <p class="text-orange-600">#visual {</p>
+
+        <!-- Changes the display property -->
+        <div id="display">
+            <label for="display-selector" class="text-white ml-8">display:</label>
+            <select name="display" id="display-selector" class="bg-slate-900 text-cyan-600 m-2 w-fit">
+                <option value="block">block</option>
+                <option value="inline">inline</option>
+                <option value="flex">flex</option>
+            </select>
+        </div>
+
+        <!-- Changes the flex-direction property -->
+        <div id="flex-direction">
+            <label for="flex-direction-selector" class="text-white ml-8">flex-direction:</label>
+            <select name="flex-direction" id="flex-direction-selector" class="bg-slate-900 text-cyan-600 m-2 w-fit">
+                <option value="row">row</option>
+                <option value="column">column</option>
+                <option value="row-reverse">row-reverse</option>
+                <option value="column-reverse">column-reverse</option>
+            </select>
+        </div>
+
+        <!-- Changes the justify-content property -->
+        <div id="justify-content">
+            <label for="justify-content-selector" class="text-white ml-8">justify-content:</label>
+            <select name="justify-content" id="justify-content-selector" class="bg-slate-900 text-cyan-600 m-2 w-fit">
+                <option value="flex-start">flex-start</option>
+                <option value="flex-end">flex-end</option>
+                <option value="center">center</option>
+                <option value="space-between">space-between</option>
+                <option value="space-around">space-around</option>
+                <option value="space-evenly">space-evenly</option>
+            </select>
+        </div>
+
+        <!-- Changes teh align-items property -->
+        <div id="alignItems">
+            <label for="align-items-selector" class="text-white ml-8">align-items:</label>
+            <select name="align-items" id="align-items-selector" class="bg-slate-900 text-cyan-600 m-2 w-fit">
+                <option value="flex-start">flex-start</option>
+                <option value="flex-end">flex-end</option>
+                <option value="center">center</option>
+                <option value="stretch">stretch</option>
+                <option value="baseline">baseline</option>
+            </select>
+        </div>
+
+        <!-- Changes the flex-wrap property -->
+        <div id="flexWrap">
+            <label for="flex-wrap-selector" class="text-white ml-8">flex-wrap:</label>
+            <select name="flex-wrap-selector" id="flex-wrap-selector" class="bg-slate-900 text-cyan-600 m-2 w-fit">
+                <option value="nowrap">nowrap</option>
+                <option value="wrap">wrap</option>
+                <option value="wrap-reverse">wrap-reverse</option>
+            </select>
+        </div>
+
+        <!-- The closing bracket for the "CSS selector" -->
+        <p class="text-orange-600">}</p>
+
+    </div>
+
+    <!-- This is where the boxes are displayed -->
     <div id="visual" class="w-2/3 h-screen"></div>
 
 </body>

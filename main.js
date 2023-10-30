@@ -228,6 +228,15 @@ const createBoxInformationModal = (box) => {
         growShrinkValueDetailNumber.addEventListener("change", event => box.style[`flex-${property}`] = "" + event.target.value)
     })
 
+    // Creates and styles a done button
+    const done = document.createElement("button")
+    modalContent.appendChild(done)
+    done.className = "bg-cyan-600 hover:bg-cyan-700 text-white font-bold py-2 px-4 rounded"
+    done.textContent = "Done"
+
+    // Adds an event listener so that the user can click it and remove the modal since clicking off sometimes isn't the most intuitive action.
+    done.addEventListener("click", removeBoxInformationModal)
+
     // Adds an event listener so that when the user clicks off the modal, it gets removed
     document.body.addEventListener("click", removeBoxInformationModal)
 }
@@ -235,7 +244,7 @@ const createBoxInformationModal = (box) => {
 // This function removes the modal that displays information about an individual box
 const removeBoxInformationModal = (event) => {
     const boxInformationModalOverlay = document.getElementById("boxInformationModalOverlay")
-    if (event.target === boxInformationModalOverlay) {
+    if (event.target === boxInformationModalOverlay || event.target.tagName === "BUTTON") {
         document.body.removeChild(boxInformationModalOverlay)
         document.body.removeEventListener("click", removeBoxInformationModal)
     }

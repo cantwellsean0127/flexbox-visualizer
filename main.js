@@ -4,10 +4,7 @@ const visual = document.getElementById("visual")
 const boxes = visual.getElementsByTagName("div")
 
 // This function adds a new display box (like the array.push method)
-const addDisplayBox = (numberOfDisplayBoxesToAdd) => {
-
-    // If the number of display boxes to create was not passed, manually set the value to 1
-    if (numberOfDisplayBoxesToAdd === undefined) numberOfDisplayBoxesToAdd = 1
+const addDisplayBox = (numberOfDisplayBoxesToAdd = 1) => {
 
     // Creates N amount of boxes
     for (let boxCount = 0; boxCount < numberOfDisplayBoxesToAdd; boxCount++) {
